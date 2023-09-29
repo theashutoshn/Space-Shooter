@@ -455,7 +455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 6924510261074392690, guid: 94a6dfc4f41b35443acfd1663e3fb465, type: 3}
   _enemyContainer: {fileID: 495633865}
-  _tripleshotpowerupPrefab: {fileID: 8488172147851990422, guid: 87f9fbd260842de49817b4416393314e, type: 3}
+  _tripleShotPowerupPrefab: {fileID: 8488172147851990422, guid: 87f9fbd260842de49817b4416393314e, type: 3}
+  _speedBosstPrefab: {fileID: 3415816954191189519, guid: b9baeca0dddbc0b4dbf1652673cdc31c, type: 3}
 --- !u!4 &1653364212
 Transform:
   m_ObjectHideFlags: 0

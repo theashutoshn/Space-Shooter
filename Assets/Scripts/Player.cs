@@ -2,52 +2,52 @@
     using System.Collections.Generic;
     using UnityEngine;
 
-    public class Player : MonoBehaviour
-    {
-        // Start is called before the first frame update
+public class Player : MonoBehaviour
+{
+    // Start is called before the first frame update
 
-        /// To create variable
-        //public or private refrence
-        //data type
-        //every variable has a name
-        //optional value assigned
-        public float speed = 6f;
-    
-        [SerializeField]
-        private GameObject _laserPrefab;
-    
-        [SerializeField]
-        private float _fireRate = 0.5f;
-        private float _canFire = -1f;
+    /// To create variable
+    //public or private refrence
+    //data type
+    //every variable has a name
+    //optional value assigned
+    public float speed = 6f;
 
-        [SerializeField]    
-        private int _lives = 3;
+    [SerializeField]
+    private GameObject _laserPrefab;
 
-        private SpawnManager _spawnmanager;
+    [SerializeField]
+    private float _fireRate = 0.5f;
+    private float _canFire = -1f;
+
+    [SerializeField]
+    private int _lives = 3;
+
+    private SpawnManager _spawnmanager;
 
     // varibale if triple shoot is enable
 
-        [SerializeField]
-        private GameObject _tripleShotPrefab;
+    [SerializeField]
+    private GameObject _tripleShotPrefab;
 
-        [SerializeField]
-        private bool _isTripleShotActive = false;
+    [SerializeField]
+    private bool _isTripleShotActive = false;
 
 
     void Start()
+    {
+        // take the current position = new position (0,0,0)
+        transform.position = new Vector3(0, 0, 0);
+        _spawnmanager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+
+        if (_spawnmanager == null)
         {
-            // take the current position = new position (0,0,0)
-            transform.position = new Vector3(0, 0, 0);
-            _spawnmanager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-
-            if (_spawnmanager == null)
-             {
-                Debug.LogError("The Spawn Manager is null");
-             }
-
-        
-      
+            Debug.LogError("The Spawn Manager is null");
         }
+
+
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -60,7 +60,7 @@
 
         }
 
-    
+
 
     }
 
@@ -113,7 +113,7 @@
     void FireLaser()
     {
         // I want to spawn a laser when I hit a space key
-        
+
         _canFire = Time.time + _fireRate;
 
         if (_isTripleShotActive == true)
@@ -125,7 +125,7 @@
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.85f, 0), Quaternion.identity);
         }
-        
+
 
         //Vector3 offset = new Vector3(0, 1.08f, 0);
         //Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
@@ -140,9 +140,9 @@
         // else fire single laser
 
 
-        
-       
-        
+
+
+
     }
 
     public void Damage()
@@ -176,4 +176,20 @@
         yield return new WaitForSeconds(5.0f);
         _isTripleShotActive = false;
     }
+
+
+    public void SpeedBoosted()
+    {
+        speed = 10f;
+
+        StartCoroutine(SpeedBoostRoutine());
+
+    }
+
+    IEnumerator SpeedBoostRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        speed = 6.0f;
+    }
+
 }

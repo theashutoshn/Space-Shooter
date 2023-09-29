@@ -15,11 +15,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPowerupPrefab;
 
+    [SerializeField]
+    private GameObject _speedBosstPrefab;
+
     private bool _stopSpawning = false;
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
+        StartCoroutine(SpawnSpeedBoost());
     }
 
     // Update is called once per frame
@@ -55,6 +59,16 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
 
+    }
+
+    IEnumerator SpawnSpeedBoost()
+    {
+        while(_stopSpawning == false)
+        {
+            Vector3 posToSpawnSpeedBoost = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            Instantiate(_speedBosstPrefab, posToSpawnSpeedBoost, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 8));
+        }
     }
 
     public void OnPlayerDeath()
