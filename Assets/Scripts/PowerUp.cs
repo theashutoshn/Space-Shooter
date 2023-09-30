@@ -8,6 +8,14 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private float _powerUpSpeed = 3f;
 
+    //ID for powerups
+    // 0 = triple shot
+    // 1 = speed boost
+    // 2 = shield
+
+    [SerializeField]
+    private int powerupID;
+
     void Start()
     {
         transform.position = new Vector3(Random.Range(-9.1f, 9.1f), 8.08f, 0);
@@ -36,7 +44,18 @@ public class PowerUp : MonoBehaviour
             Player player = other.transform.GetComponent<Player>(); //script communicate with player
             if (player != null)
             {
-               player.TripleShotActive();
+                if (powerupID == 0)
+                {
+                    player.TripleShotActive();
+                }
+                else if (powerupID == 1)
+                {
+                    player.SpeedBoosted();
+                }
+                //if powerupID is o
+                
+                //else if powerupID is 1 speedboost
+                //else shield powerup
             }
            
             Destroy(this.gameObject);
