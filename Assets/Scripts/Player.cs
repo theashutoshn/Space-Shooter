@@ -33,7 +33,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isTripleShotActive = false;
 
-
+    [SerializeField]
+    private bool _isShieldActive = false;
     void Start()
     {
         // take the current position = new position (0,0,0)
@@ -147,18 +148,23 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        //_lives = _lives - 1;
-        _lives -= 1;
-        //_lives--;
-
-        //now check if dead then destroy player
-
-        if (_lives < 1)
+        if (_isShieldActive == false)
         {
-            // communicate with spawn manager and let them know to stop spawning when the player dies.
 
-            _spawnmanager.OnPlayerDeath();
-            Destroy(this.gameObject);
+
+            //_lives = _lives - 1;
+            _lives -= 1;
+            //_lives--;
+
+            //now check if dead then destroy player
+
+            if (_lives < 1)
+            {
+                // communicate with spawn manager and let them know to stop spawning when the player dies.
+
+                _spawnmanager.OnPlayerDeath();
+                Destroy(this.gameObject);
+            }
         }
     }
 

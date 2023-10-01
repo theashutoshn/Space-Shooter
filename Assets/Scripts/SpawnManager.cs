@@ -16,7 +16,10 @@ public class SpawnManager : MonoBehaviour
     private GameObject _tripleShotPowerupPrefab;
 
     [SerializeField]
-    private GameObject _speedBosstPrefab;
+    private GameObject _speedBoostPrefab;
+
+    [SerializeField]
+    private GameObject _shieldPowerUpPrefab;
 
     private bool _stopSpawning = false;
     void Start()
@@ -55,6 +58,7 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             Vector3 posToSpawnPowerUp = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            /*int randomPowerup = Random.Range(0, 3);*/ // doubts
             Instantiate(_tripleShotPowerupPrefab, posToSpawnPowerUp, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
@@ -66,7 +70,7 @@ public class SpawnManager : MonoBehaviour
         while(_stopSpawning == false)
         {
             Vector3 posToSpawnSpeedBoost = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            Instantiate(_speedBosstPrefab, posToSpawnSpeedBoost, Quaternion.identity);
+            Instantiate(_speedBoostPrefab, posToSpawnSpeedBoost, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
