@@ -75,6 +75,13 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnShield()
+    {
+        Vector3 posToSpawnShield = new Vector3(Random.Range(-8f, 8f), 7, 0);
+        Instantiate(_shieldPowerUpPrefab, posToSpawnShield, Quaternion.identity);
+        yield return new WaitForSeconds(5.0f);
+    }
+
     public void OnPlayerDeath()
     {
         _stopSpawning = true;

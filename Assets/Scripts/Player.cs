@@ -148,8 +148,12 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        if (_isShieldActive == false)
+        if (_isShieldActive == true)
         {
+            _isShieldActive = false;
+            return;
+        }
+
 
 
             //_lives = _lives - 1;
@@ -165,7 +169,7 @@ public class Player : MonoBehaviour
                 _spawnmanager.OnPlayerDeath();
                 Destroy(this.gameObject);
             }
-        }
+        
     }
 
     public void TripleShotActive()
@@ -196,6 +200,11 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         speed = 6.0f;
+    }
+
+    public void ShieldActive()
+    {
+        _isShieldActive = true;
     }
 
 }

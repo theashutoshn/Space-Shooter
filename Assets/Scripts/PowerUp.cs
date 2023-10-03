@@ -63,7 +63,7 @@ public class PowerUp : MonoBehaviour
             switch (powerupID)
             {
                 case 2:
-                    Debug.Log("Collected Sheild");
+                    player.ShieldActive();
                     break;
 
                 case 1:
