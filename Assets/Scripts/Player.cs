@@ -40,6 +40,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldVisualizer;
 
+    // variable for score
+    [SerializeField]
+    private int _score;
 
 
     void Start()
@@ -217,5 +220,8 @@ public class Player : MonoBehaviour
         // enable the visulizer
         _shieldVisualizer.SetActive(true);
     }
+
+    // method to add 10 to the score
+    // communicate with UI to update the score.
 
 }

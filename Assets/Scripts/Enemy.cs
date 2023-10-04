@@ -51,6 +51,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
+            // Add 10 to the score
             Destroy(this.gameObject);
         }
 
