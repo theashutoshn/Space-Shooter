@@ -35,6 +35,13 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private bool _isShieldActive = false;
+
+    // variable referenc to the shield visualizer
+    [SerializeField]
+    private GameObject _shieldVisualizer;
+
+
+
     void Start()
     {
         // take the current position = new position (0,0,0)
@@ -151,6 +158,8 @@ public class Player : MonoBehaviour
         if (_isShieldActive == true)
         {
             _isShieldActive = false;
+            //disbale the visualizer
+            _shieldVisualizer.SetActive(false);
             return;
         }
 
@@ -205,6 +214,8 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
+        // enable the visulizer
+        _shieldVisualizer.SetActive(true);
     }
 
 }

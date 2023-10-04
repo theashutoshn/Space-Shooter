@@ -27,6 +27,7 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerUpRoutine());
         StartCoroutine(SpawnSpeedBoost());
+        StartCoroutine(SpawnShield());
     }
 
     // Update is called once per frame
@@ -77,9 +78,13 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnShield()
     {
-        Vector3 posToSpawnShield = new Vector3(Random.Range(-8f, 8f), 7, 0);
-        Instantiate(_shieldPowerUpPrefab, posToSpawnShield, Quaternion.identity);
-        yield return new WaitForSeconds(5.0f);
+        while (_stopSpawning == false)
+        {
+
+            Vector3 posToSpawnShield = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            Instantiate(_shieldPowerUpPrefab, posToSpawnShield, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3f, 8f));
+        }
     }
 
     public void OnPlayerDeath()
