@@ -8,8 +8,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4f;
 
+    // global 
+    private Player _player; 
     void Start()
     {
+        _player = GameObject.Find ("Player").GetComponent<Player>();
+
         transform.position = new Vector3(Random.Range(-8f, 8f), 7, 0); // by writing Random.Range(-8f, 8f), I want to spawn the enemy at random when the game begins and when the Spawning restarts
     }
 
@@ -52,6 +56,11 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
             // Add 10 to the score
+            if(_player != null)
+            {
+                _player.AddScore(10);
+            }
+
             Destroy(this.gameObject);
         }
 

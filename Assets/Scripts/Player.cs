@@ -44,12 +44,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
+    private UIManager _uiManager;
 
     void Start()
     {
         // take the current position = new position (0,0,0)
         transform.position = new Vector3(0, 0, 0);
+        
         _spawnmanager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
 
         if (_spawnmanager == null)
         {
@@ -223,5 +227,9 @@ public class Player : MonoBehaviour
 
     // method to add 10 to the score
     // communicate with UI to update the score.
-
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdateScore(_score);
+    }
 }
