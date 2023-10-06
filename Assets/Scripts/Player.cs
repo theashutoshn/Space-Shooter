@@ -174,17 +174,21 @@ public class Player : MonoBehaviour
 
             //_lives = _lives - 1;
             _lives -= 1;
-            //_lives--;
+        //_lives--;
 
-            //now check if dead then destroy player
+        //now check if dead then destroy player
+        _uiManager.UpdateLives(_lives);
 
-            if (_lives < 1)
-            {
+        if (_lives < 1)
+        {
                 // communicate with spawn manager and let them know to stop spawning when the player dies.
 
-                _spawnmanager.OnPlayerDeath();
-                Destroy(this.gameObject);
-            }
+               _spawnmanager.OnPlayerDeath();
+               
+
+               Destroy(this.gameObject);
+                
+        }
         
     }
 
