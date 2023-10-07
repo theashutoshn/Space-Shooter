@@ -13,6 +13,11 @@ public class Enemy : MonoBehaviour
 
     private Animator _anim;
 
+    
+
+    [SerializeField]
+    private AudioSource _audioScource;
+
     void Start()
     {
         _player = GameObject.Find ("Player")?.GetComponent<Player>();
@@ -28,6 +33,15 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Anim is NULL");
         }
+
+        _audioScource = GetComponent<AudioSource>();
+
+        if(_audioScource == null)
+        {
+            Debug.LogError("Audio Source is Null");
+        }
+       
+        
 
         transform.position = new Vector3(Random.Range(-8f, 8f), 7, 0); // by writing Random.Range(-8f, 8f), I want to spawn the enemy at random when the game begins and when the Spawning restarts
     }
@@ -64,7 +78,9 @@ public class Enemy : MonoBehaviour
 
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
+            _audioScource.Play();
             Destroy(this.gameObject, 2.8f);
+            
         }
 
         // if other is laser then destroy laser then damage us    
@@ -81,6 +97,7 @@ public class Enemy : MonoBehaviour
 
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
+            _audioScource.Play();
             Destroy(this.gameObject, 2.8f);
             
         }

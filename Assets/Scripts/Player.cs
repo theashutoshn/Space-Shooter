@@ -46,6 +46,16 @@ public class Player : MonoBehaviour
 
     private UIManager _uiManager;
 
+    [SerializeField]
+    private GameObject _rightEngine, _leftEngine;
+
+    [SerializeField]
+    private AudioClip _laserAudio;
+
+    [SerializeField]
+    private AudioSource _audioScource;
+
+    
     void Start()
     {
         // take the current position = new position (0,0,0)
@@ -53,14 +63,27 @@ public class Player : MonoBehaviour
         
         _spawnmanager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-
+        _audioScource = GetComponent<AudioSource>();
 
         if (_spawnmanager == null)
         {
             Debug.LogError("The Spawn Manager is null");
         }
 
+        if (_uiManager == null)
+        {
+            Debug.LogError("The UI Manager is null");
+        }
 
+        if (_audioScource == null)
+        {
+            Debug.LogError("The Audio is null");
+        }
+        else
+        {
+            _audioScource.clip = _laserAudio;
+        }
+        
 
     }
 
@@ -153,7 +176,7 @@ public class Player : MonoBehaviour
         // fire 3 laser
 
         // else fire single laser
-
+        _audioScource.Play();
 
 
 
@@ -172,13 +195,23 @@ public class Player : MonoBehaviour
 
 
 
-            //_lives = _lives - 1;
-            _lives -= 1;
+        //_lives = _lives - 1;
+        _lives -= 1;
         //_lives--;
 
-        //now check if dead then destroy player
+        if(_lives == 2)
+        {
+            _rightEngine.SetActive(true);
+        }
+        else if(_lives == 1)
+        {
+            _leftEngine.SetActive(true);
+        }
+        
         _uiManager.UpdateLives(_lives);
 
+
+        //now check if dead then destroy player
         if (_lives < 1)
         {
                 // communicate with spawn manager and let them know to stop spawning when the player dies.

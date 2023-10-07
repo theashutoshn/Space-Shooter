@@ -16,9 +16,13 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private int powerupID;
 
+    [SerializeField]
+    private AudioClip _clip;
+
     void Start()
     {
         transform.position = new Vector3(Random.Range(-9.1f, 9.1f), 8.08f, 0);
+        
     }
 
     // Update is called once per frame
@@ -31,6 +35,8 @@ public class PowerUp : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,44 +48,50 @@ public class PowerUp : MonoBehaviour
 
             //communicate with player script
             Player player = other.transform.GetComponent<Player>(); //script communicate with player
-            //if (player != null)
-            //{
-            //    if (powerupID == 0)
-            //    {
-            //        player.TripleShotActive();
-            //    }
-            //    else if (powerupID == 1)
-            //    {
-            //        player.SpeedBoosted();
-            //    }
-            //    //if powerupID is o
-                
+                                                                    //if (player != null)
+                                                                    //{
+                                                                    //    if (powerupID == 0)
+                                                                    //    {
+                                                                    //        player.TripleShotActive();
+                                                                    //    }
+                                                                    //    else if (powerupID == 1)
+                                                                    //    {
+                                                                    //        player.SpeedBoosted();
+                                                                    //    }
+                                                                    //    //if powerupID is o
+
             //    //else if powerupID is 1 speedboost
             //    //else shield powerup
             //}
-           
+
+
+            AudioSource.PlayClipAtPoint(_clip, transform.position);
+            
             // Switch Statment Optimization
 
-            switch (powerupID)
+            if (player != null)
             {
-                case 2:
-                    player.ShieldActive();
-                    break;
+                switch (powerupID)
+                {
+                    case 2:
+                        player.ShieldActive();
+                        break;
 
-                case 1:
-                    player.SpeedBoosted();
-                    break;
+                    case 1:
+                        player.SpeedBoosted();
+                        break;
 
-                case 0:
-                    player.TripleShotActive();
-                    break;
+                    case 0:
+                        player.TripleShotActive();
+                        break;
 
-                default:
-                    Debug.Log("Default Value");
-                    break;
-              
+                    default:
+                        Debug.Log("Default Value");
+                        break;
+
+                }
             }
-
+            
             Destroy(this.gameObject);
                 
         }

@@ -24,8 +24,13 @@ public class SpawnManager : MonoBehaviour
     private bool _stopSpawning = false;
     void Start()
     {
+        
+    }
+
+    public void StartSpawning()
+    {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnPowerUpRoutine());
+        StartCoroutine(SpawnTripleShotRoutine());
         StartCoroutine(SpawnSpeedBoost());
         StartCoroutine(SpawnShield());
     }
@@ -41,6 +46,9 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnEnemyRoutine()
     {
+        // wait for 2 sec after the asteriod is destory and then start spawning.
+        yield return new WaitForSeconds(2f);
+
         //while loop
         //Instantite enemy prefab
         //Yeild wait for 5 second
@@ -54,8 +62,12 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpawnPowerUpRoutine()
+    IEnumerator SpawnTripleShotRoutine()
     {
+        // wait for 2 sec after the asteriod is destory and then start spawning.
+        yield return new WaitForSeconds(2f);
+
+
         while (_stopSpawning == false)
         {
             Vector3 posToSpawnPowerUp = new Vector3(Random.Range(-8f, 8f), 7, 0);
@@ -68,7 +80,12 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnSpeedBoost()
     {
-        while(_stopSpawning == false)
+
+        // wait for 2 sec after the asteriod is destory and then start spawning.
+        yield return new WaitForSeconds(2f);
+
+
+        while (_stopSpawning == false)
         {
             Vector3 posToSpawnSpeedBoost = new Vector3(Random.Range(-8f, 8f), 7, 0);
             Instantiate(_speedBoostPrefab, posToSpawnSpeedBoost, Quaternion.identity);
@@ -78,6 +95,10 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpawnShield()
     {
+        // wait for 2 sec after the asteriod is destory and then start spawning.
+        yield return new WaitForSeconds(2f);
+
+
         while (_stopSpawning == false)
         {
 
