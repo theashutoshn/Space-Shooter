@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -22,6 +23,14 @@ public class GameManager : MonoBehaviour
             
             SceneManager.LoadScene(1);
         }
+
+        // if ESC key is  pressed the quit the application
+
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
     }
 
     public void GameOver()

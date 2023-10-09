@@ -11,4 +11,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(1); // Loading game scene
 
     }
+
+    public void CoOpMode()
+    {
+        SceneManager.LoadScene(2);
+    }
 }

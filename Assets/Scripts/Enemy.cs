@@ -18,6 +18,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private AudioSource _audioScource;
 
+    [SerializeField]
+    private GameObject _enemyLaserPrefab;
+
+    private float _enemyLaserFireRate;
+    private float _canFire = -1;
     void Start()
     {
         _player = GameObject.Find ("Player")?.GetComponent<Player>();
@@ -49,11 +54,40 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateMovement();
+        EnemyLaser();
+        
+    }
+
+    public void EnemyLaser()
+    {
+        if (Time.time > _canFire)
+        {
+            _enemyLaserFireRate = Random.Range(3f, 7f);
+            _canFire = Time.time + _enemyLaserFireRate;
+            GameObject enemyLaser = Instantiate(_enemyLaserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+            //lasers[0].AssignEnemyLaser();
+            //lasers[1].AssignEnemyLaser();
+
+
+            // I can use below for loop if we have more lasers
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+
+        }
+    }
+    
+
+    void CalculateMovement()
+    {
         // move down enemy 4 meter per second
 
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        
-                
+
+
         // if bottom of the screen, respawn at the top with new random X position
 
         if (transform.position.y < -6f)
@@ -61,8 +95,6 @@ public class Enemy : MonoBehaviour
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
-
-
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
