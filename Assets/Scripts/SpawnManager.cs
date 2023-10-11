@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     private bool _stopSpawning = false;
     void Start()
     {
-        
+        StartSpawning();
     }
 
     public void StartSpawning()

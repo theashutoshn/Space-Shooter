@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     private int _score;
 
     private UIManager _uiManager;
+    private GameManager _gameManager;
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
@@ -60,10 +61,12 @@ public class Player : MonoBehaviour
     {
         // take the current position = new position (0,0,0)
         transform.position = new Vector3(0, 0, 0);
-        
+
+
         _spawnmanager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioScource = GetComponent<AudioSource>();
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
         if (_spawnmanager == null)
         {
@@ -83,6 +86,9 @@ public class Player : MonoBehaviour
         {
             _audioScource.clip = _laserAudio;
         }
+
+       
+           
         
 
     }

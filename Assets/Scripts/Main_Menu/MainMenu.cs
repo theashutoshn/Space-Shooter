@@ -12,8 +12,5 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public void CoOpMode()
-    {
-        SceneManager.LoadScene(2);
-    }
+   
 }
