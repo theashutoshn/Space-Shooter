@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool _isGameOver;
+
+    [SerializeField]
+    private GameObject _pauseMenuPanel;
+
+
     void Start()
     {
         
@@ -33,7 +38,7 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-
+        PauseMenu();
 
     }
 
@@ -43,7 +48,19 @@ public class GameManager : MonoBehaviour
         
     }
 
-    
+    public void PauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            _pauseMenuPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+    }
 
    
 }

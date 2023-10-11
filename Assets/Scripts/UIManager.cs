@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 
     private GameManager _gameManager;
 
+    
 
     void Start()
     {
