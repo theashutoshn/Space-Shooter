@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+        _pauseMenuPanel.SetActive(false);
     }
 
    
