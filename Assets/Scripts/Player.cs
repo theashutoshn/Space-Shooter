@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
+    
+
     private UIManager _uiManager;
     private GameManager _gameManager;
 
@@ -96,6 +98,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         CalculateMovement();
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && Time.time > _canFire)
@@ -223,7 +227,7 @@ public class Player : MonoBehaviour
                 // communicate with spawn manager and let them know to stop spawning when the player dies.
 
                _spawnmanager.OnPlayerDeath();
-               
+                
 
                Destroy(this.gameObject);
                 
@@ -275,4 +279,7 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
+
+    
+   
 }

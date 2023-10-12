@@ -30,13 +30,18 @@ public class UIManager : MonoBehaviour
 
     
 
+    
+
+
     void Start()
     {
         // assign text compnent to handle
         _scoreText.text = "Score: " + 0;
+        
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+        
 
         if(_gameManager == null)
         {
@@ -47,13 +52,17 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+         
     }
 
     public void UpdateScore(int playerScore)
     {
         _scoreText.text = "Score: " + playerScore.ToString();
     }
+
+       
+
+    
 
     public void UpdateLives(int currentLives)
     {
